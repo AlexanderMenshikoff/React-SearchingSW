@@ -32,7 +32,7 @@ const SearchingInput = (props) => {
           <input
             type="search"
             id="search"
-            className="w-[500px] block p-4 ps-10 text-sm outline-none text-gray-900 border border-gray-300 rounded-[25px] bg-gray-50 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500"
+            className="w-[500px] block p-4 ps-10 text-sm outline-none text-gray-900 border border-gray-300 rounded-[25px] bg-gray-50 focus:ring-gray-500 focus:border-gray-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 search-cancel:fill-green-400 search-cancel:h-4 search-cancel:w-4 search-cancel:appearance-none search-cancel:bg-[url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg)] "
             placeholder="Введите имя персонажа по-английски"
             required
             value={props.inputValue}
@@ -41,13 +41,6 @@ const SearchingInput = (props) => {
             }}
           />
           {console.log(props.inputValue)}
-          <button
-            type="submit"
-            className="text-white absolute end-2.5 bottom-2.5 bg-gray-400 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800"
-            onClick={props.getHeroes}
-          >
-            Поиск
-          </button>
         </div>
       </form>
     </div>
