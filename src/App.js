@@ -22,29 +22,34 @@ const App = () => {
   }, []);
 
   return (
-    <div className="App">
-      <div className="flex justify-center m-[30px]">
+    <div>
+      <div className="flex justify-center mt-[30px] mb-[70px]">
         <SearchingInput
           inputValue={inputValue}
           setInputValue={setInputValue}
           getHeroes={getHeroesList}
         />
       </div>
-      {inputValue
-        ? heroList.map((el, i) => {
-            return (
-              el.name?.toLowerCase().includes(inputValue?.toLowerCase()) && (
-                <div key={i}>
-                  <p>{el.name}</p>
-                  <p>{el.birth_year}</p>
-                  <p>{el.gender}</p>
-                  <p>{el.height}</p>
-                  <p>{el.mass}</p>
-                </div>
-              )
-            );
-          })
-        : ""}
+      <div>
+        {inputValue
+          ? heroList.map((el, i) => {
+              return (
+                el.name?.toLowerCase().includes(inputValue?.toLowerCase()) && (
+                  <div
+                    key={i}
+                    className="rounded-[25px] border p-[30px] mb-[20px] w-[50vw] ml-[20px] text-[20px]"
+                  >
+                    <p>Name: {el.name}</p>
+                    <p>Birth year: {el.birth_year}</p>
+                    <p>Gender: {el.gender}</p>
+                    <p>Height: {el.height}</p>
+                    <p>Weight: {el.mass}</p>
+                  </div>
+                )
+              );
+            })
+          : ""}
+      </div>
     </div>
   );
 };
