@@ -4,7 +4,7 @@
 @import url('https://fonts.cdnfonts.com/css/star-wars');
 
 body{
-    background-image: url('./panoramic-view-sunset-night.jpg');
+    background-image: url('./media/imgs/panoramic-view-sunset-night.jpg');
     background-attachment: fixed;
     background-size: cover;
     /* font-family: 'Star wars', sans-serif; */
