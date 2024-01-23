@@ -1,25 +1,44 @@
+import CharacterBlock from "./components/CharacterBlock";
 import SearchingInput from "./components/SearchingInput";
 import { useEffect, useState } from "react";
 
 const App = () => {
   const [heroList, setHeroList] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [visibility, setVisibility] = useState("hidden");
 
   const getHeroesList = async () => {
-    const heroesResp = await fetch("https://swapi.dev/api/people/");
-    const respDataHeroes = await heroesResp.json();
-    const arr = [];
-    for (let index = 1; index <= respDataHeroes.count; index++) {
-      const heroesResp2 = await fetch("https://swapi.dev/api/people/" + index);
-      const respDataHeroes2 = await heroesResp2.json();
-      arr.push(respDataHeroes2);
+    const characters = [];
+    const pagesArray = [];
+
+    const heroesReq = await fetch("https://swapi.dev/api/people/");
+    const heroesResp = await heroesReq.json();
+
+    for (let index = 1; index <= Math.ceil(heroesResp.count / 10); index++) {
+      pagesArray.push(index);
     }
-    setHeroList(arr);
+
+    const pagesResponse = pagesArray.map((el) =>
+      fetch(`https://swapi.dev/api/people/?page=` + el).then((resp) =>
+        resp.json()
+      )
+    );
+
+    Promise.all(pagesResponse)
+      .then((result) => {
+        result.map((el) => characters.push(...el.results));
+        console.log(characters, "ready");
+        setVisibility("block");
+      })
+      .catch((err) => console.log(err));
+    setHeroList(characters);
   };
 
   useEffect(() => {
     getHeroesList();
   }, []);
+
+  console.log(visibility);
 
   return (
     <div>
@@ -28,27 +47,11 @@ const App = () => {
           inputValue={inputValue}
           setInputValue={setInputValue}
           getHeroes={getHeroesList}
+          visibility={visibility}
         />
       </div>
-      <div>
-        {inputValue
-          ? heroList.map((el, i) => {
-              return (
-                el.name?.toLowerCase().includes(inputValue?.toLowerCase()) && (
-                  <div
-                    key={i}
-                    className="rounded-[25px] border p-[30px] mb-[20px] w-[50vw] ml-[20px] text-[20px]"
-                  >
-                    <p>Name: {el.name}</p>
-                    <p>Birth year: {el.birth_year}</p>
-                    <p>Gender: {el.gender}</p>
-                    <p>Height: {el.height}</p>
-                    <p>Weight: {el.mass}</p>
-                  </div>
-                )
-              );
-            })
-          : ""}
+      <div className="flex flex-wrap justify-center">
+        <CharacterBlock inputValue={inputValue} heroList={heroList} />
       </div>
     </div>
   );
