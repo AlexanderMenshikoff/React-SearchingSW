@@ -21,10 +21,10 @@ const CharacterBlock = (props) => {
                     <span className="font-sw ">Gender:</span> {el.gender}
                   </p>
                   <p>
-                    <span className="font-sw">Height:</span> {el.height}
+                    <span className="font-sw">Height:</span> {el.height}cm
                   </p>
                   <p>
-                    <span className="font-sw">Weight:</span> {el.mass}
+                    <span className="font-sw">Weight:</span> {el.mass}kg
                   </p>
                 </div>
               )
