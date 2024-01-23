@@ -6,6 +6,7 @@ const App = () => {
   const [heroList, setHeroList] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [visibility, setVisibility] = useState("hidden");
+  const [loaderVisibility, setLoaderVisibility] = useState("block");
 
   const getHeroesList = async () => {
     const characters = [];
@@ -28,7 +29,8 @@ const App = () => {
       .then((result) => {
         result.map((el) => characters.push(...el.results));
         console.log(characters, "ready");
-        setVisibility("block");
+        setVisibility(loaderVisibility);
+        setLoaderVisibility(visibility);
       })
       .catch((err) => console.log(err));
     setHeroList(characters);
@@ -50,7 +52,12 @@ const App = () => {
           visibility={visibility}
         />
       </div>
+
       <div className="flex flex-wrap justify-center">
+        <div className={loaderVisibility}>
+          <div className="loader"> </div>
+        </div>
+
         <CharacterBlock inputValue={inputValue} heroList={heroList} />
       </div>
     </div>
