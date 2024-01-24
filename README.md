@@ -15,7 +15,7 @@ To create this project I used these technologies:
 * Tailwind 
 * Star Wars API
 
-React - https://react.dev/
-Tailwind - https://tailwindcss.com/
-Star Wars API - https://swapi.dev/
+[React](https://react.dev/)
+[Tailwind](https://tailwindcss.com/)
+[Star Wars API](https://swapi.dev/)
 
