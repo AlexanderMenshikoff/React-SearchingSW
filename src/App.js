@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 const App = () => {
   const [heroList, setHeroList] = useState([]);
   const [inputValue, setInputValue] = useState("");
-  const [visibility, setVisibility] = useState("hidden");
-  const [loaderVisibility, setLoaderVisibility] = useState("block");
+  const [visibility, setVisibility] = useState(true);
 
   const getHeroesList = async () => {
     const characters = [];
@@ -28,9 +27,7 @@ const App = () => {
     Promise.all(pagesResponse)
       .then((result) => {
         result.map((el) => characters.push(...el.results));
-        console.log(characters, "ready");
-        setVisibility(loaderVisibility);
-        setLoaderVisibility(visibility);
+        setVisibility(!visibility);
       })
       .catch((err) => console.log(err));
     setHeroList(characters);
@@ -40,26 +37,26 @@ const App = () => {
     getHeroesList();
   }, []);
 
-  console.log(visibility);
-
   return (
     <div>
-      <div className="flex justify-center mt-[30px] mb-[70px]">
-        <SearchingInput
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          getHeroes={getHeroesList}
-          visibility={visibility}
-        />
-      </div>
-
-      <div className="flex flex-wrap justify-center">
-        <div className={loaderVisibility}>
+      {visibility ? (
+        <div className="flex flex-wrap justify-center">
           <div className="loader"> </div>
         </div>
-
-        <CharacterBlock inputValue={inputValue} heroList={heroList} />
-      </div>
+      ) : (
+        <div>
+          <div className="flex justify-center mt-[30px] mb-[70px]">
+            <SearchingInput
+              inputValue={inputValue}
+              setInputValue={setInputValue}
+              visibility={visibility}
+            />
+          </div>
+          <div className="flex flex-wrap justify-center">
+            <CharacterBlock inputValue={inputValue} heroList={heroList} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
