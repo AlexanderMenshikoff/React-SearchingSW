@@ -31,6 +31,6 @@ body{
     background-size: cover;
     background-image: url('./media/imgs/yoda_loader.png');
     animation: spin 5s cubic-bezier(1, 1, 1, 1) infinite;
-    margin-top: 200px;
+    margin-top: 300px;
   }
   
