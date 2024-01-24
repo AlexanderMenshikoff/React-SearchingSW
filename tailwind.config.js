@@ -1,16 +1,27 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
-    extend: {
-      fontFamily: {
-        sw: ["Star Wars"],
-      },
+import plugin from "tailwindcss/plugin";
+export const content = ["./src/**/*.{js,jsx,ts,tsx}"];
+export const theme = {
+  extend: {
+    fontFamily: {
+      sw: ["Star Wars"],
     },
   },
-  plugins: [
-    require("tailwindcss/plugin")(({ addVariant }) => {
-      addVariant("search-cancel", "&::-webkit-search-cancel-button");
-    }),
-  ],
 };
+export const plugins = [
+  require("tailwindcss/plugin")(({ addVariant }) => {
+    addVariant("search-cancel", "&::-webkit-search-cancel-button");
+  }),
+  plugin(function ({ addBase }) {
+    addBase({
+      '[type="search"]::-webkit-search-cancel-button': {
+        cursor: "pointer",
+        backgroundImage:
+          "url('https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg')",
+        backgroundColor: "#64676e",
+        borderRadius: "25px",
+        border: "1px gray solid ",
+      },
+    });
+  }),
+];
