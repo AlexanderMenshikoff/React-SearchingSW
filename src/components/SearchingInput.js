@@ -1,12 +1,10 @@
-// import { useState } from "react";
-
 const SearchingInput = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   return (
-    <div className={props.visibility}>
+    <div>
       <form onSubmit={handleSubmit}>
         <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white ">
           Search
@@ -32,7 +30,7 @@ const SearchingInput = (props) => {
           <input
             type="search"
             id="search"
-            className="w-[25vw] block p-4 ps-10 text-sm outline-none text-gray-300  border border-gray-500 rounded-[25px] bg-black group focus:ring-gray-500 focus:border-yellow-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 search-cancel:fill-green-400 search-cancel:h-4 search-cancel:w-4 search-cancel:appearance-none search-cancel:bg-[url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg)]  "
+            className="w-[25vw] block p-4 ps-10 text-sm outline-none text-gray-300  border border-gray-500 rounded-[25px] bg-black group focus:ring-gray-500 focus:border-yellow-400 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-500 dark:focus:border-gray-500 search-cancel:fill-green-400 search-cancel:h-4 search-cancel:w-4 search-cancel:appearance-none   "
             placeholder="Введите имя персонажа по-английски"
             required
             value={props.inputValue}
@@ -40,7 +38,6 @@ const SearchingInput = (props) => {
               props.setInputValue(e.target.value);
             }}
           />
-          {console.log(props.inputValue)}
         </div>
       </form>
     </div>
